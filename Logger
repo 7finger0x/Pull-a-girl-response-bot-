@@ -1,0 +1,31 @@
+import Foundation
+
+struct Logger {
+    private let logFileURL: URL
+    private let fileHandle: FileHandle
+
+    init(logFilePath: String = "conversation.log") {
+        let fileManager = FileManager.default
+        let logDir = fileManager.currentDirectoryPath
+        logFileURL = URL(fileURLWithPath: logDir).appendingPathComponent(logFilePath)
+
+        if !fileManager.fileExists(atPath: logFileURL.path) {
+            fileManager.createFile(atPath: logFileURL.path, contents: nil)
+        }
+        fileHandle = try! FileHandle(forWritingTo: logFileURL)
+        fileHandle.seekToEndOfFile()
+    }
+
+    func log(_ message: String, level: String = "INFO") {
+        let timestamp = ISO8601DateFormatter().string(from: Date())
+        let logMessage = "[\(timestamp)] [\(level)] \(message)\n"
+        print(logMessage, terminator: "")
+        if let data = logMessage.data(using: .utf8) {
+            fileHandle.write(data)
+        }
+    }
+
+    func close() {
+        fileHandle.closeFile()
+    }
+}
