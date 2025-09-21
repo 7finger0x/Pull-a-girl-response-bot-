@@ -1,0 +1,149 @@
+{
+  "root": {
+    "type": "question",
+    "content": "Be honest... what's one memory from your childhood that still makes you smile or laugh every time you think about it?",
+    "test": "Evaluate response: Detailed/emotional/playful with engagement (positive); Short without details (neutral); Ignores/one-word/dismissive (negative).",
+    "children": {
+      "positive": "node_2A",
+      "neutral": "node_2B",
+      "negative": "node_2C"
+    },
+    "default": "neutral"
+  },
+  "node_2A": {
+    "type": "question",
+    "content": "Sounds epic. If we could time-travel back to that moment right now, what wild twist would you add to make it even better?",
+    "test": "Enthusiastic/flirty/adds details about you (positive); Simple answer without emotion (neutral); Dismissive/evasive (negative).",
+    "children": {
+      "positive": "node_3A",
+      "neutral": "node_3B",
+      "negative": "node_3C"
+    },
+    "default": "neutral"
+  },
+  "node_2B": {
+    "type": "question",
+    "content": "Short and sweet—bet there's more to that story. What's the one detail you'd never tell most people?",
+    "test": "Opens up more (positive); Still vague (neutral); Shuts down (negative).",
+    "children": {
+      "positive": "node_2A",
+      "neutral": "node_3B",
+      "negative": "node_2C"
+    },
+    "default": "neutral"
+  },
+  "node_2C": {
+    "type": "response",
+    "content": "Cool, no pressure. Been caught up in my own adventures anyway. [Wait 1-2 days, then send: 'Just wrapped up something wild. Your turn—what's your latest thrill?']",
+    "test": "If she re-engages curiously (positive); No response (neutral/negative—assess and possibly exit).",
+    "children": {
+      "positive": "root",
+      "neutral": "terminus_exit",
+      "negative": "terminus_exit"
+    },
+    "default": "neutral"
+  },
+  "node_3A": {
+    "type": "question",
+    "content": "Damn, that twist has me intrigued. What's the one thing in life that always pulls at your heartstrings—no matter what?",
+    "test": "Shares vulnerably/asks about you (positive); Honest but surface-level (neutral); Avoids/jokes off (negative).",
+    "children": {
+      "positive": "node_4A",
+      "neutral": "node_4B",
+      "negative": "node_4C"
+    },
+    "default": "neutral"
+  },
+  "node_3B": {
+    "type": "question",
+    "content": "Interesting... but let's switch it up. If you could steal one superpower for a day, what chaos would you cause?",
+    "test": "Laughs/engages playfully (positive); Basic answer (neutral); Unenthusiastic (negative).",
+    "children": {
+      "positive": "node_3A",
+      "neutral": "node_4B",
+      "negative": "node_4C"
+    },
+    "default": "neutral"
+  },
+  "node_3C": {
+    "type": "question",
+    "content": "Fair play. Not everyone dives deep right away. What's your go-to escape when life gets too real?",
+    "test": "Opens up (positive); Vague (neutral); Dismissive (negative).",
+    "children": {
+      "positive": "node_3A",
+      "neutral": "node_4B",
+      "negative": "node_2C"
+    },
+    "default": "neutral"
+  },
+  "node_4A": {
+    "type": "question",
+    "content": "That hits close. Imagine us chasing that feeling together—what's the first move you'd make?",
+    "test": "Flirty/suggests details (positive); Positive but hesitant (neutral); Pulls back (negative).",
+    "children": {
+      "positive": "terminus_A",
+      "neutral": "node_5B",
+      "negative": "node_5C"
+    },
+    "default": "neutral"
+  },
+  "node_4B": {
+    "type": "question",
+    "content": "Bet there's a story there. Care to hint at it, or should I guess?",
+    "test": "Hints/asks you to guess (positive); Neutral response (neutral); Negative (negative).",
+    "children": {
+      "positive": "node_4A",
+      "neutral": "node_5B",
+      "negative": "node_5C"
+    },
+    "default": "neutral"
+  },
+  "node_4C": {
+    "type": "response",
+    "content": "Understood. Sometimes silence says more. [Wait 12-24 hours, then send: 'Popped into my head— what's one guilty pleasure you can't resist?']",
+    "test": "Re-engages positively (positive); Neutral (neutral); Negative (negative).",
+    "children": {
+      "positive": "node_3A",
+      "neutral": "node_5B",
+      "negative": "terminus_exit"
+    },
+    "default": "neutral"
+  },
+  "node_5B": {
+    "type": "question",
+    "content": "Solid choice. Now, flip it—what's one risk you've always wanted to take but haven't yet?",
+    "test": "Engaged (positive); Basic (neutral); Uninterested (negative).",
+    "children": {
+      "positive": "terminus_A",
+      "neutral": "terminus_B",
+      "negative": "node_5C"
+    },
+    "default": "neutral"
+  },
+  "node_5C": {
+    "type": "response",
+    "content": "Got it. [Go low for a day, then: 'Been thinking—life's too short for safe bets. What's yours?']",
+    "test": "She chases (positive); Otherwise (neutral/negative).",
+    "children": {
+      "positive": "terminus_A",
+      "neutral": "terminus_exit",
+      "negative": "terminus_exit"
+    },
+    "default": "neutral"
+  },
+  "terminus_A": {
+    "type": "terminus",
+    "content": "Love that energy. Let's make it real—Friday, 8PM, that spot with the views. You in?",
+    "children": null
+  },
+  "terminus_B": {
+    "type": "terminus",
+    "content": "Intriguing. Might have to explore that sometime. What's your schedule looking like?",
+    "children": null
+  },
+  "terminus_exit": {
+    "type": "terminus",
+    "content": "Enjoy your escapes. Hit me up if you want real adventure. [Move on or reassess.]",
+    "children": null
+  }
+}
